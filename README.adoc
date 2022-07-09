@@ -1,12 +1,19 @@
-From a security standpoint, `security tokens` are obtained by the client service for verification and getting access to a resource service.
-These are obtained from an authorization service. Let us not dive deep into the authorization part as it entirely depends on the security protocol and the used communication model. Representation wise, tokens are mainly represented either in JSON or XML, i.e JSON Web Token(JWT) and SAML tokens respectively. JWT being more compact became more popular recently.
+*JWT*
 
-In this article we will restrict ourselves to a service-service communication model, where a JWT access token is issued upon successful TLS client certificate authentication.
+*Background*
+
+From a security standpoint, `security tokens` are obtained by a `Client service` for verification and getting access to a `Resource service` (please also read Stateless Authentication).
+These are obtained from an `Authorization service`. Let us not dive deep into the authorization part as it also depends on the security protocol and the communication model.
+
+Representation wise, tokens are mainly represented either in JSON or XML, i.e `JSON Web Token(JWT)` and SAML tokens respectively. JWT being more compact became more popular recently.
+
+In this article we will restrict ourselves to a service-service communication model, where a JWT access token is issued upon successful `TLS client certificate authentication`.
 
 Content wise, typical information it carries answers mainly,
-1) who is the subject or the principal? -> username,email
-2) who is the issuing party? -> OAuth2 server, IdP server (Web SSO), a trusted `access-token service`
-3) when was it issued? -> lifetime and scope
-4) when and where it can be used? -> claims, associated roles etc.
+
+* who is the subject or the principal? -> username,email,FQN
+* who is the issuing party? -> OAuth2 server, IdP server (Web SSO), trusted Authorization service
+* when was it issued? -> lifetime and scope
+* when and where it can be used? -> claims, associated roles etc.
 
 Message structure wise, it constitute `{Header}.{Payload}.{Signature}`
